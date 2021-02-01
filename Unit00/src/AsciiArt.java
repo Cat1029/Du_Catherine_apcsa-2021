@@ -1,23 +1,23 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
-//Date -
-//Class -
-//Lab  -
+//Name - Catherine Du
+//Date - 1/31/2021
+//Class - APCSA
+//Lab  - ASCII Art
 
 public class AsciiArt
 {
 	public static void main ( String[] args )
 	{
-		System.out.println("Your Name \n\n" );
-		System.out.println("What type of ANIMAL YOU WILL DRAW" );
+		System.out.println("Catherine D \n\n" );
+		System.out.println("Bunnies with a big carrot" );
 		System.out.println("\n\n\n\n" );
 
-		System.out.println("                /\\                " );
-		System.out.println("               /  \\               " );
-		System.out.println("              /    \\              " );
-		System.out.println("             [------]             " );
+		System.out.println("                 ()()()                " );
+		System.out.println("        ()()     \\    /     ()()       " );
+		System.out.println("        (..)      \\  /      (..)       " );
+		System.out.println(" _______(><)_______\\/______<( <)_________" );
 		//add other output
 
 		System.out.println(" \n\n\n\nHelpFul Hints" );
