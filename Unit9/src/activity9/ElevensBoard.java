@@ -42,6 +42,7 @@ public class ElevensBoard extends Board {
 	 */
 	 public ElevensBoard() {
 	 	super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+	 	System.out.println("Name: Catherine Du \nPeriod: 3 \nDate: April 13th");
 	 }
 
 	/**
@@ -55,12 +56,12 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		if(selectedCards.size()==2) {
-			return containsPairSum11(selectedCards);
+		/* make change */
+		if(selectedCards.size()==3) {
+			return containsThreeSum11(selectedCards);
 		}
-		else if(selectedCards.size()==3) {
-			return containsJQK(selectedCards);
+		else if(selectedCards.size()==2) {
+			return facePair(selectedCards);
 		}
 		else {
 			return false;
@@ -77,9 +78,25 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		/* make change */
 		List<Integer> cIndexes=cardIndexes();
-		return containsPairSum11(cIndexes) || containsJQK(cIndexes);
+		return containsThreeSum11(cIndexes) || facePair(cIndexes);
+	}
+	
+	private boolean containsThreeSum11(List<Integer> selectedCards) {
+		for(int sk1=0; sk1<selectedCards.size(); sk1++) {
+			int k1=selectedCards.get(sk1).intValue();
+			for(int sk2=sk1+1; sk2<selectedCards.size(); sk2++) {
+				int k2=selectedCards.get(sk2).intValue();
+				for(int sk3=sk2+1; sk3<selectedCards.size(); sk3++) {
+					int k3=selectedCards.get(sk3).intValue();
+					if(cardAt(k1).pointValue()+cardAt(k2).pointValue()+cardAt(k3).pointValue()==11) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -89,9 +106,9 @@ public class ElevensBoard extends Board {
 	 *                      to find an 11-pair.
 	 * @return true if the board entries in selectedCards
 	 *              contain an 11-pair; false otherwise.
-	 */
+	 
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** 
 		for(int sk1=0; sk1<selectedCards.size(); sk1++) {
 			int k1=selectedCards.get(sk1).intValue();
 			for(int sk2=sk1+1; sk2<selectedCards.size(); sk2++) {
@@ -103,7 +120,29 @@ public class ElevensBoard extends Board {
 		}
 		return false;
 	}
+	*/
 
+	private boolean facePair(List<Integer> selectedCards) {
+		int foundJack=0;
+		int foundQueen=0;
+		int foundKing=0;
+		for(Integer kObj:selectedCards) {
+			int k=kObj.intValue();
+			if(cardAt(k).rank().equals("jack")) {
+				foundJack+=1;
+			}
+			else if(cardAt(k).rank().equals("queen")) {
+				foundQueen+=1;
+			}
+			else if(cardAt(k).rank().equals("king")) {
+				foundKing+=1;
+			}
+		}
+		if(foundJack>=2 ||foundQueen>=2 ||foundKing>=2) {
+			return true;
+		}
+		else return false;
+	}
 	/**
 	 * Check for a JQK in the selected cards.
 	 * @param selectedCards selects a subset of this board.  It is list
@@ -111,9 +150,9 @@ public class ElevensBoard extends Board {
 	 *                      to find a JQK group.
 	 * @return true if the board entries in selectedCards
 	 *              include a jack, a queen, and a king; false otherwise.
-	 */
+	 
 	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** 
 		boolean foundJack=false;
 		boolean foundQueen=false;
 		boolean foundKing=false;
@@ -131,4 +170,5 @@ public class ElevensBoard extends Board {
 		}
 		return foundJack&&foundQueen&&foundKing;
 	}
+	 */
 }
