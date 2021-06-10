@@ -402,6 +402,32 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void blur(int x, int y, int w, int h, int n) {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (int r=x; r<x+h; r++) {
+	      for (int c=y; c<y+w; c++) {
+	    	  if(r<=0) {
+	    		  r=1;
+	    	  }
+	    	  if(c<=0) {
+	    		  c=1;
+	    	  }
+	    	  int avgRed = (pixels[r-1][c-1].getRed() + pixels[r-1][c+1].getRed() + pixels[r-1][c].getRed() + 
+	    			  pixels[r][c-1].getRed() + pixels[r][c+1].getRed() + pixels[r][c].getRed() + 
+	    			  pixels[r+1][c-1].getRed() + pixels[r+1][c+1].getRed() + pixels[r+1][c].getRed()) / 9;
+	    	  int avgBlue = (pixels[r-1][c-1].getBlue() + pixels[r-1][c+1].getBlue() + pixels[r-1][c].getBlue() + 
+	    			  pixels[r][c-1].getBlue() + pixels[r][c+1].getBlue() + pixels[r][c].getBlue() + 
+	    			  pixels[r+1][c-1].getBlue() + pixels[r+1][c+1].getBlue() + pixels[r+1][c].getBlue()) / 9;
+	    	  int avgGreen = (pixels[r-1][c-1].getGreen() + pixels[r-1][c+1].getGreen() + pixels[r-1][c].getGreen() + 
+	    			  pixels[r][c-1].getGreen() + pixels[r][c+1].getGreen() + pixels[r][c].getGreen() + 
+	    			  pixels[r+1][c-1].getGreen() + pixels[r+1][c+1].getGreen() + pixels[r+1][c].getGreen()) / 9;
+	    	  pixels[r][c].setRed(avgRed);
+	    	  pixels[r][c].setBlue(avgBlue);
+	    	  pixels[r][c].setGreen(avgGreen);
+	      }
+	  }
+  
+  }
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
@@ -411,7 +437,7 @@ public class Picture extends SimplePicture
     beach.explore();
     beach.zeroBlue();
     beach.explore();
-
+    System.out.println("Name: Catherine Du, Period: 3, Date: May 25th");
   }
   
 } // this } is the end of class Picture, put all new methods before this

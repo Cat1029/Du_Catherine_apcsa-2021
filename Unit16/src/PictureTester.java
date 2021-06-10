@@ -129,6 +129,16 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testBlur(int x, int y, int w, int h, int n)
+  {
+     Picture redMoto = new Picture("C:\\Users\\windy\\Downloads\\images-20210524T083648Z-001\\images\\redMotorcycle.jpg");
+     for (int i = 0; i<n; i++){
+        redMoto.blur(x,y,w,h,n);
+      }
+      redMoto.explore();
+  }
+
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -149,7 +159,7 @@ public class PictureTester
 	//testMirrorHorizontalBotToTop();
     //testMirrorTemple();
     //testMirrorArms();
-    testMirrorGull();
+    //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
 	//testMyCollage();
@@ -162,5 +172,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  testBlur(180,160,25,25,10);
   }
 }
